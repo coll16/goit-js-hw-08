@@ -7,23 +7,27 @@ import SimpleLightbox from "simplelightbox"
 const gallery = document.querySelector('.gallery');
 
 const createItems = ({ preview, original, description }) => {
-    return `
-      <li class="gallery__item" style="list-style-type: none;">
-        <a class="gallery__link" href="${original}">
-          <img class="gallery__image" src="${preview}" alt="${description}"/>
-        </a>
-      </li>
-    `;
-  };
+  return `
+    <li class="gallery__item" style="list-style-type: none;">
+      <a class="gallery__link" href="${original}">
+        <img class="gallery__image" src="${preview}" alt="${description}"/>
+      </a>
+    </li>
+  `;
+};
 
-  const galleryItemsMarkup = galleryItems
+const galleryItemsMarkup = galleryItems
   .map(item => createItems(item))
-  .join('');
+  .join('')
 
-  gallery.insertAdjacentHTML('afterbegin', galleryItemsMarkup);
+gallery.insertAdjacentHTML('afterbegin', galleryItemsMarkup)
 
-  const images = gallery.querySelectorAll('.gallery__image');
+const images = gallery.querySelectorAll('.gallery__image')
 images.forEach(image => {
-  const text = image.getAttribute('alt');
-  image.setAttribute('title', text);
-});
+  const text = image.getAttribute('alt')
+  image.setAttribute('title', text)
+})
+
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'title',
+})
